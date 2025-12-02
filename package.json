@@ -1,0 +1,32 @@
+{
+  "name": "solanatools",
+  "version": "1.0.0",
+  "description": "Website for random Solana tools that I need",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mdulin2/SolanaTools.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mdulin2/SolanaTools/issues"
+  },
+  "homepage": "https://github.com/mdulin2/SolanaTools#readme",
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "typescript": "^5.9.3",
+    "vite": "^7.2.6"
+  },
+  "dependencies": {
+    "@solana/web3.js": "^1.98.4",
+    "bs58": "^6.0.0",
+    "buffer": "^6.0.3"
+  }
+}

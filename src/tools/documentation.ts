@@ -1,0 +1,62 @@
+export function initDocumentationTool() {
+  const container = document.getElementById('tool-container');
+  if (!container) return;
+
+  container.innerHTML = `
+    <div class="tool-content">
+      <h2>Useful Documentation</h2>
+      <p class="tool-description">
+        Curated resources for Solana and Anchor development
+      </p>
+
+      <div class="doc-grid">
+        <a href="https://solana.com/docs/core/pda" target="_blank" rel="noopener noreferrer" class="doc-card">
+          <h3>Program Derived Addresses (PDAs)</h3>
+          <p>Learn about PDAs and how they work in Solana programs</p>
+        </a>
+
+        <a href="https://www.anchor-lang.com/docs/references/account-constraints" target="_blank" rel="noopener noreferrer" class="doc-card">
+          <h3>Anchor Constraints</h3>
+          <p>Macro constraints for Anchor</p>
+        </a>
+
+        <a href="https://solana.com/docs/core/accounts" target="_blank" rel="noopener noreferrer" class="doc-card">
+          <h3>Solana Accounts</h3>
+          <p>Understanding the account model in Solana</p>
+        </a>
+
+        <a href="https://solana.com/docs/core/tokens" target="_blank" rel="noopener noreferrer" class="doc-card">
+          <h3>Token Program</h3>
+          <p>Working with SPL tokens and token accounts</p>
+        </a>
+        <a href="https://solana.com/docs/tokens/extensions" target="_blank" rel="noopener noreferrer" class="doc-card">
+          <h3>Token2022 Extensions</h3>
+          <p>Working with token2022 tokens </p>
+        </a>
+
+        <a href="https://solana.com/docs/rpc" target="_blank" rel="noopener noreferrer" class="doc-card">
+          <h3>Solana RPC API</h3>
+          <p>Complete reference for Solana's JSON RPC methods</p>
+        </a>
+
+        <a href="https://solana.com/docs/core/cpi" target="_blank" rel="noopener noreferrer" class="doc-card">
+          <h3>Cross-Program Invocation</h3>
+          <p>Making calls between programs on Solana</p>
+        </a>
+
+        <a href="https://www.anchor-lang.com/docs" target="_blank" rel="noopener noreferrer" class="doc-card">
+          <h3>Anchor Framework</h3>
+          <p>Official documentation for the Anchor framework</p>
+        </a>
+        <a href="https://www.helius.dev/blog/solana-virtual-machine" target="_blank" rel="noopener noreferrer" class="doc-card">
+          <h3>What is the Solana Virtual Machine?</h3>
+          <p>How the SVM works</p>
+        </a>
+        <a href="https://mertimus.substack.com/p/the-solana-reading-list" target="_blank" rel="noopener noreferrer" class="doc-card">
+          <h3>Solana Reading List</h3>
+          <p>A list of random articles about Solana</p>
+        </a>
+      </div>
+    </div>
+  `;
+}

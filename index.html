@@ -1,1 +1,35 @@
-<b>hello world</b>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Solana Tools</title>
+    <link rel="stylesheet" href="/styles/main.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Solana Tools</h1>
+        <p class="subtitle">Developer utilities for the Solana blockchain</p>
+      </header>
+
+      <nav class="tool-nav">
+        <button class="tool-btn active" data-tool="hex-base58">
+          Hex ↔ Base58
+        </button>
+        <button class="tool-btn" data-tool="pda">
+          PDA Derivation
+        </button>
+        <button class="tool-btn" data-tool="docs">
+          Documentation
+        </button>
+      </nav>
+
+      <main id="tool-container">
+        <!-- Tool content will be injected here -->
+      </main>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
