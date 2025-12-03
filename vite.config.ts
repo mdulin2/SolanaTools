@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-  base: '/SolanaTools/',
+  base: '/',
   build: {
     outDir: 'dist',
   },
