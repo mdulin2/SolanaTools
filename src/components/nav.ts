@@ -5,12 +5,12 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { href: '/SolanaTools/index.html', label: 'Hex ↔ Base58', id: 'hex-base58' },
   { href: '/SolanaTools/pda-derivation.html', label: 'PDA Derivation', id: 'pda' },
   { href: '/SolanaTools/ata-derivation.html', label: 'ATA Derivation', id: 'ata' },
   { href: '/SolanaTools/account-viewer.html', label: 'Account Viewer', id: 'account-viewer' },
   { href: '/SolanaTools/account-compare.html', label: 'Account Compare', id: 'account-compare' },
   { href: '/SolanaTools/core-addresses.html', label: 'Core Addresses', id: 'core-addresses' },
+  { href: '/SolanaTools/index.html', label: 'Hex ↔ Base58', id: 'hex-base58' },
   { href: '/SolanaTools/documentation.html', label: 'Documentation', id: 'docs' },
 ];
 
