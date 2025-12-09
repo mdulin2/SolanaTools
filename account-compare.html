@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Account Compare - Solana Tools</title>
+    <link rel="stylesheet" href="/styles/main.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Solana Tools</h1>
+        <p class="subtitle">Developer utilities for the Solana blockchain</p>
+      </header>
+
+      <div id="nav-container"></div>
+
+      <main id="tool-container">
+        <div class="tool-content">
+          <h2>Account Comparison</h2>
+          <p class="tool-description">
+            Compare two Solana accounts and highlight byte-level differences
+          </p>
+
+          <div class="comparison-inputs">
+            <div class="form-group">
+              <label for="account-address-1">Account Address 1</label>
+              <input
+                type="text"
+                id="account-address-1"
+                placeholder="Enter first account public key"
+                class="input-field"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="account-address-2">Account Address 2</label>
+              <input
+                type="text"
+                id="account-address-2"
+                placeholder="Enter second account public key"
+                class="input-field"
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="rpc-url">Custom RPC Endpoint (optional)</label>
+            <input
+              type="text"
+              id="rpc-url"
+              placeholder="https://your-rpc-endpoint.com (leave empty for dRPC)"
+              class="input-field"
+            />
+            <p class="field-hint">
+              Uses <a href="https://drpc.org/" target="_blank" rel="noopener noreferrer">dRPC</a> by default.
+            </p>
+          </div>
+
+          <div class="button-group">
+            <button id="compare-btn" class="primary-btn">Compare Accounts</button>
+            <button id="clear-btn" class="secondary-btn">Clear</button>
+          </div>
+
+          <div class="result-section" id="result-section" style="display: none;">
+            <div class="comparison-grid">
+              <div class="comparison-column">
+                <div class="explorer-link-section">
+                  <a id="explorer-link-1" href="#" target="_blank" rel="noopener noreferrer" class="explorer-link">
+                    View Account 1 on Solscan →
+                  </a>
+                </div>
+                <h3>Account 1</h3>
+                <div class="account-metadata">
+                  <div class="metadata-item">
+                    <label>Owner</label>
+                    <code id="owner-display-1" class="metadata-value"></code>
+                  </div>
+                  <div class="metadata-item">
+                    <label>Lamports</label>
+                    <span id="lamports-display-1" class="metadata-value"></span>
+                  </div>
+                  <div class="metadata-item">
+                    <label>Executable</label>
+                    <span id="executable-display-1" class="metadata-value"></span>
+                  </div>
+                  <div class="metadata-item">
+                    <label>Data Size</label>
+                    <span id="data-size-display-1" class="metadata-value"></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="comparison-column">
+                <div class="explorer-link-section">
+                  <a id="explorer-link-2" href="#" target="_blank" rel="noopener noreferrer" class="explorer-link">
+                    View Account 2 on Solscan →
+                  </a>
+                </div>
+                <h3>Account 2</h3>
+                <div class="account-metadata">
+                  <div class="metadata-item">
+                    <label>Owner</label>
+                    <code id="owner-display-2" class="metadata-value"></code>
+                  </div>
+                  <div class="metadata-item">
+                    <label>Lamports</label>
+                    <span id="lamports-display-2" class="metadata-value"></span>
+                  </div>
+                  <div class="metadata-item">
+                    <label>Executable</label>
+                    <span id="executable-display-2" class="metadata-value"></span>
+                  </div>
+                  <div class="metadata-item">
+                    <label>Data Size</label>
+                    <span id="data-size-display-2" class="metadata-value"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="data-comparison-section">
+              <h3>Data Comparison</h3>
+              <p class="comparison-info" id="comparison-info"></p>
+
+              <div class="form-group">
+                <label>Byte Range (applies to both accounts)</label>
+                <div class="range-controls">
+                  <div class="range-input-group">
+                    <label for="start-byte">Start</label>
+                    <input type="number" id="start-byte" value="0" min="0" class="input-field small" />
+                  </div>
+                  <div class="range-input-group">
+                    <label for="end-byte">End</label>
+                    <input type="number" id="end-byte" value="100" min="0" class="input-field small" />
+                  </div>
+                  <button id="show-all-btn" class="secondary-btn">Show All</button>
+                </div>
+              </div>
+
+              <div class="comparison-data-grid">
+                <div class="comparison-data-column">
+                  <h4>Account 1 Data</h4>
+                  <pre id="data-display-1" class="data-content"></pre>
+                </div>
+                <div class="comparison-data-column">
+                  <h4>Account 2 Data</h4>
+                  <pre id="data-display-2" class="data-content"></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="message-container"></div>
+        </div>
+      </main>
+    </div>
+
+    <script type="module" src="/src/tools/account-compare.ts"></script>
+  </body>
+</html>

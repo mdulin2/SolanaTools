@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Account Viewer - Solana Tools</title>
+    <link rel="stylesheet" href="/styles/main.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Solana Tools</h1>
+        <p class="subtitle">Developer utilities for the Solana blockchain</p>
+      </header>
+
+      <div id="nav-container"></div>
+
+      <main id="tool-container">
+        <div class="tool-content">
+          <h2>Account Viewer</h2>
+          <p class="tool-description">
+            View Solana account data and metadata from mainnet
+          </p>
+
+          <div class="form-group">
+            <label for="account-address">Account Address</label>
+            <input
+              type="text"
+              id="account-address"
+              placeholder="Enter account public key (base58)"
+              class="input-field"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="rpc-url">Custom RPC Endpoint (optional)</label>
+            <input
+              type="text"
+              id="rpc-url"
+              placeholder="https://your-rpc-endpoint.com (leave empty for dRPC)"
+              class="input-field"
+            />
+            <p class="field-hint">
+              Uses <a href="https://drpc.org/" target="_blank" rel="noopener noreferrer">dRPC</a> by default.
+              For a custom endpoint, try
+              <a href="https://www.helius.dev/" target="_blank" rel="noopener noreferrer">Helius</a>,
+              <a href="https://www.quicknode.com/" target="_blank" rel="noopener noreferrer">QuickNode</a>,
+              or <a href="https://www.alchemy.com/" target="_blank" rel="noopener noreferrer">Alchemy</a>.
+            </p>
+          </div>
+
+          <div class="button-group">
+            <button id="fetch-btn" class="primary-btn">Fetch Account</button>
+            <button id="clear-btn" class="secondary-btn">Clear</button>
+          </div>
+
+          <div class="result-section" id="result-section" style="display: none;">
+            <div class="explorer-link-section">
+              <a id="explorer-link" href="#" target="_blank" rel="noopener noreferrer" class="explorer-link">
+                View on Solscan →
+              </a>
+            </div>
+
+            <h3>Account Information</h3>
+
+            <div class="account-metadata">
+              <div class="metadata-item">
+                <label>Owner</label>
+                <code id="owner-display" class="metadata-value"></code>
+              </div>
+              <div class="metadata-item">
+                <label>Lamports</label>
+                <span id="lamports-display" class="metadata-value"></span>
+              </div>
+              <div class="metadata-item">
+                <label>Executable</label>
+                <span id="executable-display" class="metadata-value"></span>
+              </div>
+              <div class="metadata-item">
+                <label>Data Size</label>
+                <span id="data-size-display" class="metadata-value"></span>
+              </div>
+            </div>
+
+            <div id="token-info-section" style="display: none;">
+              <h3 id="token-info-header">Token Account Information</h3>
+              <div class="account-metadata">
+                <div class="metadata-item">
+                  <label>Mint</label>
+                  <code id="token-mint-display" class="metadata-value"></code>
+                </div>
+                <div class="metadata-item">
+                  <label>Token Owner</label>
+                  <code id="token-owner-display" class="metadata-value"></code>
+                </div>
+                <div class="metadata-item">
+                  <label>Amount</label>
+                  <span id="token-amount-display" class="metadata-value"></span>
+                </div>
+                <div class="metadata-item">
+                  <label>Delegate</label>
+                  <code id="token-delegate-display" class="metadata-value"></code>
+                </div>
+                <div class="metadata-item">
+                  <label>Delegated Amount</label>
+                  <span id="token-delegated-amount-display" class="metadata-value"></span>
+                </div>
+                <div class="metadata-item">
+                  <label>Is Native</label>
+                  <span id="token-is-native-display" class="metadata-value"></span>
+                </div>
+              </div>
+            </div>
+
+            <div id="token-metadata-section" style="display: none;">
+              <h3>Token Metadata</h3>
+              <div class="account-metadata">
+                <div class="metadata-item">
+                  <label>Name</label>
+                  <span id="token-name-display" class="metadata-value"></span>
+                </div>
+                <div class="metadata-item">
+                  <label>Symbol</label>
+                  <span id="token-symbol-display" class="metadata-value"></span>
+                </div>
+                <div class="metadata-item">
+                  <label>Decimals</label>
+                  <span id="token-decimals-display" class="metadata-value"></span>
+                </div>
+                <div class="metadata-item">
+                  <label>URI</label>
+                  <code id="token-uri-display" class="metadata-value"></code>
+                </div>
+                <div class="metadata-item">
+                  <label>Update Authority</label>
+                  <code id="token-update-authority-display" class="metadata-value"></code>
+                </div>
+              </div>
+            </div>
+
+            <div class="data-controls">
+              <h3>Account Data</h3>
+
+              <div class="form-group">
+                <label>Display Mode</label>
+                <div class="radio-group">
+                  <label class="radio-label">
+                    <input type="radio" name="display-mode" value="spaced" checked />
+                    Spaced Hex (00 01 02)
+                  </label>
+                  <label class="radio-label">
+                    <input type="radio" name="display-mode" value="continuous" />
+                    Continuous Hex (000102)
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Byte Range</label>
+                <div class="range-controls">
+                  <div class="range-input-group">
+                    <label for="start-byte">Start</label>
+                    <input type="number" id="start-byte" value="0" min="0" class="input-field small" />
+                  </div>
+                  <div class="range-input-group">
+                    <label for="end-byte">End</label>
+                    <input type="number" id="end-byte" value="100" min="0" class="input-field small" />
+                  </div>
+                  <button id="show-discriminator-btn" class="secondary-btn">Show Discriminator</button>
+                  <button id="show-all-btn" class="secondary-btn">Show All</button>
+                </div>
+              </div>
+
+              <div class="data-display">
+                <pre id="data-preview" class="data-content"></pre>
+                <div id="data-info" class="data-info"></div>
+              </div>
+
+              <div class="collapsible-section">
+                <button id="toggle-raw-btn" class="secondary-btn">Show Full Raw Data</button>
+                <pre id="raw-data-display" class="data-content" style="display: none;"></pre>
+              </div>
+            </div>
+          </div>
+
+          <div id="message-container"></div>
+        </div>
+      </main>
+    </div>
+
+    <script type="module" src="/src/tools/account-viewer.ts"></script>
+  </body>
+</html>

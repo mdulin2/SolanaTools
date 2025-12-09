@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Core Addresses - Solana Tools</title>
+    <link rel="stylesheet" href="/styles/main.css" />
+    <style>
+      .container {
+        max-width: 1200px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Solana Tools</h1>
+        <p class="subtitle">Developer utilities for the Solana blockchain</p>
+      </header>
+
+      <div id="nav-container"></div>
+
+      <main id="tool-container">
+        <div class="tool-content">
+          <h2>Core Solana Addresses</h2>
+          <p class="tool-description">
+            Quick reference for important program and account addresses on Solana
+          </p>
+
+          <div id="addresses-container">
+            <!-- Addresses will be rendered here -->
+          </div>
+
+          <div id="message-container"></div>
+        </div>
+      </main>
+    </div>
+
+    <script type="module" src="/src/tools/core-addresses.ts"></script>
+  </body>
+</html>

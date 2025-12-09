@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ATA Derivation - Solana Tools</title>
+    <link rel="stylesheet" href="/styles/main.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Solana Tools</h1>
+        <p class="subtitle">Developer utilities for the Solana blockchain</p>
+      </header>
+
+      <div id="nav-container"></div>
+
+      <main id="tool-container">
+        <div class="tool-content">
+          <h2>Associated Token Account (ATA) Derivation</h2>
+          <p class="tool-description">
+            Derive the Associated Token Account address for a wallet and token mint
+          </p>
+
+          <div class="form-group">
+            <label for="owner-address">Token Owner Address</label>
+            <input
+              type="text"
+              id="owner-address"
+              placeholder="Enter wallet address (base58)"
+              class="input-field"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="mint-address">Mint Address</label>
+            <input
+              type="text"
+              id="mint-address"
+              placeholder="Enter token mint address (base58)"
+              class="input-field"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="token-program">Token Program</label>
+            <select id="token-program" class="input-field">
+              <option value="TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA">SPL Token Program</option>
+              <option value="TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb">Token2022 Program</option>
+            </select>
+          </div>
+
+          <div class="button-group">
+            <button id="derive-btn" class="primary-btn">Derive ATA</button>
+            <button id="clear-btn" class="secondary-btn">Clear</button>
+          </div>
+
+          <div class="result-section" id="result-section" style="display: none;">
+            <div class="form-group">
+              <label>Associated Token Account Address</label>
+              <div class="result-display">
+                <input
+                  type="text"
+                  id="ata-output"
+                  readonly
+                  class="input-field"
+                />
+                <button id="copy-btn" class="icon-btn" title="Copy ATA address">
+                  📋
+                </button>
+              </div>
+            </div>
+
+            <div class="info-box">
+              <strong>Info:</strong> This is the deterministic ATA address for this wallet and token mint combination.
+            </div>
+          </div>
+
+          <div id="message-container"></div>
+        </div>
+      </main>
+    </div>
+
+    <script type="module" src="/src/tools/ata-derivation.ts"></script>
+  </body>
+</html>

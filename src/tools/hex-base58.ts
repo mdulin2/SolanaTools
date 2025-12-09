@@ -1,62 +1,20 @@
 import bs58 from 'bs58';
 import { showError, showSuccess, copyToClipboard } from '../utils/ui';
+import { initNavigation } from '../components/nav';
 
-export function initHexBase58Tool() {
-  const container = document.getElementById('tool-container');
-  if (!container) return;
-
-  container.innerHTML = `
-    <div class="tool-content">
-      <h2>Hex ↔ Base58 Converter</h2>
-      <p class="tool-description">
-        Convert between hexadecimal and Base58 encoding (used for Solana addresses)
-      </p>
-
-      <div class="form-group">
-        <label for="input">Input (Hex or Base58)</label>
-        <input
-          type="text"
-          id="input"
-          placeholder="Enter hex (0x...) or base58 string"
-          class="input-field"
-        />
-      </div>
-
-      <div class="button-group">
-        <button id="convert-btn" class="primary-btn">Convert</button>
-        <button id="clear-btn" class="secondary-btn">Clear</button>
-      </div>
-
-      <div class="result-section" id="result-section" style="display: none;">
-        <div class="form-group">
-          <label>Result</label>
-          <div class="result-display">
-            <input
-              type="text"
-              id="output"
-              readonly
-              class="input-field"
-            />
-            <button id="copy-btn" class="icon-btn" title="Copy to clipboard">
-              📋
-            </button>
-          </div>
-        </div>
-
-        <div class="info-box">
-          <strong>Detected format:</strong> <span id="format-info"></span>
-        </div>
-      </div>
-
-      <div id="message-container"></div>
-    </div>
-  `;
-
+function init() {
+  // Initialize navigation
+  initNavigation('hex-base58');
   const inputEl = document.getElementById('input') as HTMLInputElement;
   const outputEl = document.getElementById('output') as HTMLInputElement;
   const resultSection = document.getElementById('result-section') as HTMLDivElement;
   const formatInfo = document.getElementById('format-info') as HTMLSpanElement;
   const messageContainer = document.getElementById('message-container') as HTMLDivElement;
+
+  if (!inputEl || !outputEl || !resultSection || !formatInfo || !messageContainer) {
+    console.error('Required elements not found');
+    return;
+  }
 
   function convert() {
     const input = inputEl.value.trim();
@@ -126,4 +84,11 @@ export function initHexBase58Tool() {
       convert();
     }
   });
+}
+
+// Initialize when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
 }

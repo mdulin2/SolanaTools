@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PDA Derivation - Solana Tools</title>
+    <link rel="stylesheet" href="/styles/main.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Solana Tools</h1>
+        <p class="subtitle">Developer utilities for the Solana blockchain</p>
+      </header>
+
+      <div id="nav-container"></div>
+
+      <main id="tool-container">
+        <div class="tool-content">
+          <h2>PDA Derivation</h2>
+          <p class="tool-description">
+            Derive Program Derived Addresses (PDAs) from a program ID and seeds
+          </p>
+
+          <div class="form-group">
+            <label for="program-id">Program ID</label>
+            <input
+              type="text"
+              id="program-id"
+              placeholder="Enter program address (base58)"
+              class="input-field"
+            />
+          </div>
+
+          <div class="seeds-section">
+            <div class="seeds-header">
+              <label>Seeds</label>
+              <button id="add-seed-btn" class="secondary-btn">+ Add Seed</button>
+            </div>
+            <div id="seeds-container">
+              <p class="empty-message">No seeds added yet. Click "Add Seed" to start.</p>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="bump-input">Bump (optional)</label>
+            <input
+              type="number"
+              id="bump-input"
+              placeholder=""
+              class="input-field small"
+              min="0"
+              max="255"
+            />
+            <p class="field-hint">Leave empty to find the canonical bump automatically</p>
+          </div>
+
+          <div class="button-group">
+            <button id="derive-btn" class="primary-btn">Derive PDA</button>
+            <button id="clear-all-btn" class="secondary-btn">Clear All</button>
+          </div>
+
+          <div class="result-section" id="result-section" style="display: none;">
+            <div class="form-group">
+              <label>Derived PDA</label>
+              <div class="result-display">
+                <input
+                  type="text"
+                  id="pda-output"
+                  readonly
+                  class="input-field"
+                />
+                <button id="copy-pda-btn" class="icon-btn" title="Copy PDA">
+                  📋
+                </button>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Bump</label>
+              <input
+                type="text"
+                id="bump-output"
+                readonly
+                class="input-field small"
+              />
+            </div>
+          </div>
+
+          <div id="message-container"></div>
+        </div>
+      </main>
+    </div>
+
+    <script type="module" src="/src/tools/pda-derivation.ts"></script>
+  </body>
+</html>

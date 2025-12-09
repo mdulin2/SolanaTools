@@ -1,5 +1,6 @@
 import { PublicKey } from '@solana/web3.js';
 import { showError, showSuccess, copyToClipboard } from '../utils/ui';
+import { initNavigation } from '../components/nav';
 import { Buffer } from 'buffer';
 
 interface Seed {
@@ -11,89 +12,13 @@ interface Seed {
 let seedCounter = 0;
 const seeds: Seed[] = [];
 
-export function initPDADerivationTool() {
-  const container = document.getElementById('tool-container');
-  if (!container) return;
+function init() {
+  // Initialize navigation
+  initNavigation('pda');
 
   // Reset state
   seedCounter = 0;
   seeds.length = 0;
-
-  container.innerHTML = `
-    <div class="tool-content">
-      <h2>PDA Derivation</h2>
-      <p class="tool-description">
-        Derive Program Derived Addresses (PDAs) from a program ID and seeds
-      </p>
-
-      <div class="form-group">
-        <label for="program-id">Program ID</label>
-        <input
-          type="text"
-          id="program-id"
-          placeholder="Enter program address (base58)"
-          class="input-field"
-        />
-      </div>
-
-      <div class="seeds-section">
-        <div class="seeds-header">
-          <label>Seeds</label>
-          <button id="add-seed-btn" class="secondary-btn">+ Add Seed</button>
-        </div>
-        <div id="seeds-container">
-          <p class="empty-message">No seeds added yet. Click "Add Seed" to start.</p>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="bump-input">Bump (optional)</label>
-        <input
-          type="number"
-          id="bump-input"
-          placeholder=""
-          class="input-field small"
-          min="0"
-          max="255"
-        />
-        <p class="field-hint">Leave empty to find the canonical bump automatically</p>
-      </div>
-
-      <div class="button-group">
-        <button id="derive-btn" class="primary-btn">Derive PDA</button>
-        <button id="clear-all-btn" class="secondary-btn">Clear All</button>
-      </div>
-
-      <div class="result-section" id="result-section" style="display: none;">
-        <div class="form-group">
-          <label>Derived PDA</label>
-          <div class="result-display">
-            <input
-              type="text"
-              id="pda-output"
-              readonly
-              class="input-field"
-            />
-            <button id="copy-pda-btn" class="icon-btn" title="Copy PDA">
-              📋
-            </button>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>Bump</label>
-          <input
-            type="text"
-            id="bump-output"
-            readonly
-            class="input-field small"
-          />
-        </div>
-      </div>
-
-      <div id="message-container"></div>
-    </div>
-  `;
 
   const programIdEl = document.getElementById('program-id') as HTMLInputElement;
   const bumpInputEl = document.getElementById('bump-input') as HTMLInputElement;
@@ -102,6 +27,11 @@ export function initPDADerivationTool() {
   const pdaOutputEl = document.getElementById('pda-output') as HTMLInputElement;
   const bumpOutputEl = document.getElementById('bump-output') as HTMLInputElement;
   const messageContainer = document.getElementById('message-container') as HTMLDivElement;
+
+  if (!programIdEl || !bumpInputEl || !seedsContainer || !resultSection || !pdaOutputEl || !bumpOutputEl || !messageContainer) {
+    console.error('Required elements not found');
+    return;
+  }
 
   function addSeed() {
     const seed: Seed = {
@@ -463,4 +393,11 @@ export function initPDADerivationTool() {
 
   // Initialize with empty seeds
   renderSeeds();
+}
+
+// Initialize when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
 }
