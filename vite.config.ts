@@ -14,6 +14,8 @@ export default defineConfig({
         'account-viewer': resolve(__dirname, 'account-viewer.html'),
         'account-compare': resolve(__dirname, 'account-compare.html'),
         'core-addresses': resolve(__dirname, 'core-addresses.html'),
+        'tools': resolve(__dirname, 'tools.html'),
+        'security': resolve(__dirname, 'security.html'),
         'documentation': resolve(__dirname, 'documentation.html'),
       },
     },

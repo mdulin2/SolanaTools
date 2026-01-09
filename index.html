@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hex ↔ Base58 Converter - Solana Tools</title>
+    <title>Solana Tools</title>
     <link rel="stylesheet" href="/styles/main.css" />
   </head>
   <body>
@@ -17,52 +17,61 @@
 
       <main id="tool-container">
         <div class="tool-content">
-          <h2>Hex ↔ Base58 Converter</h2>
+          <h2>Welcome to Solana Tools</h2>
           <p class="tool-description">
-            Convert between hexadecimal and Base58 encoding (used for Solana addresses)
+            A collection of developer utilities for working with the Solana blockchain. Select a tool below to get started.
           </p>
 
-          <div class="form-group">
-            <label for="input">Input (Hex or Base58)</label>
-            <input
-              type="text"
-              id="input"
-              placeholder="Enter hex (0x...) or base58 string"
-              class="input-field"
-            />
+          <div class="doc-grid">
+            <a href="/SolanaTools/pda-derivation.html" class="doc-card">
+              <h3>PDA Derivation</h3>
+              <p>Derive Program Derived Addresses (PDAs) from program IDs and seeds</p>
+            </a>
+
+            <a href="/SolanaTools/ata-derivation.html" class="doc-card">
+              <h3>ATA Derivation</h3>
+              <p>Derive Associated Token Account addresses for SPL tokens</p>
+            </a>
+
+            <a href="/SolanaTools/account-viewer.html" class="doc-card">
+              <h3>Account Viewer</h3>
+              <p>View and inspect Solana account data from the blockchain</p>
+            </a>
+
+            <a href="/SolanaTools/account-compare.html" class="doc-card">
+              <h3>Account Compare</h3>
+              <p>Compare two Solana accounts side-by-side to identify differences</p>
+            </a>
+
+            <a href="/SolanaTools/core-addresses.html" class="doc-card">
+              <h3>Core Addresses</h3>
+              <p>Quick reference for common Solana program addresses and system accounts</p>
+            </a>
+
+            <a href="/SolanaTools/hex-base58.html" class="doc-card">
+              <h3>Hex ↔ Base58 Converter</h3>
+              <p>Convert between hexadecimal and Base58 encoding</p>
+            </a>
+
+            <a href="/SolanaTools/tools.html" class="doc-card">
+              <h3>Tools</h3>
+              <p>Quick links to essential Solana development tools and explorers</p>
+            </a>
+
+            <a href="/SolanaTools/security.html" class="doc-card">
+              <h3>Security</h3>
+              <p>Curated security resources, best practices, and vulnerability research</p>
+            </a>
+
+            <a href="/SolanaTools/documentation.html" class="doc-card">
+              <h3>Documentation</h3>
+              <p>Curated resources for Solana and Anchor development</p>
+            </a>
           </div>
-
-          <div class="button-group">
-            <button id="convert-btn" class="primary-btn">Convert</button>
-            <button id="clear-btn" class="secondary-btn">Clear</button>
-          </div>
-
-          <div class="result-section" id="result-section" style="display: none;">
-            <div class="form-group">
-              <label>Result</label>
-              <div class="result-display">
-                <input
-                  type="text"
-                  id="output"
-                  readonly
-                  class="input-field"
-                />
-                <button id="copy-btn" class="icon-btn" title="Copy to clipboard">
-                  📋
-                </button>
-              </div>
-            </div>
-
-            <div class="info-box">
-              <strong>Detected format:</strong> <span id="format-info"></span>
-            </div>
-          </div>
-
-          <div id="message-container"></div>
         </div>
       </main>
     </div>
 
-    <script type="module" src="/src/tools/hex-base58.ts"></script>
+    <script type="module" src="/src/tools/home.ts"></script>
   </body>
 </html>
